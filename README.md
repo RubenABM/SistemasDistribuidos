@@ -1,6 +1,6 @@
 # SistemasDistribuidos - Tema: Repositório de Ficheiros Distribuído on-line
 
-Projeto 5º Semestre de Engenharia Informática
+Trabalho prático 5º Semestre de Engenharia Informática
 
 Alunos:
 - Ana Bernardino
