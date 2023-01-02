@@ -1,0 +1,55 @@
+Instruções para a execução da aplicação web:
+
+1 - Ter o docker instalado;
+2 - Entrar no terminal do ubuntu;
+
+//instalação de pré-requisitos
+2.1 - sudo apt update
+2.2 - sudo apt autoremove
+2.3 - sudo apt install -y docker docker-compose
+2.4 - sudo usermod -aG docker $USER
+2.5 - sudo systemctl restart docker
+2.6 - sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+	wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+	sudo apt update
+2.7 - sudo ln -s /usr/lib/postgresql/14/bin/* /usr/sbin/
+2.8 - sudo apt -y install python3 python3-pip libpq-dev
+2.9 - sudo ln -s /usr/bin/python3 /usr/bin/python
+2.10 - sudo -H pip install testresources
+2.11 - sudo -H pip install --upgrade setuptools
+2.12 - sudo -H pip install psycopg2-binary
+2.13 - sudo -H pip install psycopg2
+
+//clone do patroni para a replicação da base de dados
+2.14 - cd ~
+2.15 - git clone https://github.com/zalando/patroni.git
+2.16 - cd ~/patroni
+2.17 - Copiar e colar os ficheiros da pasta "patroni" facultada por nós na pasta aberta pelo ubuntu
+2.18 - python setup.py build
+2.19 - docker build -t patroni .
+2.20 - docker-compose up -d
+2.21 - docker ps
+2.22 - docker exec -ti patroni1 bash
+2.23 - patronictl list
+2.24 - exit
+
+//para criar a base de dados
+2.25 - psql -h localhost -p 5000 -U postgres -W
+2.26 - (password) foobar
+2.27 - CREATE DATABASE uniddrive_development;
+2.28 - \c uniddrive_development
+2.29 - (password) foobar
+2.30 - Copiar os comandos do ficheiro da base de dados que se encontra na pasta BaseDados do zip fornecido
+2.31 - Para desconectar da base de dados basta escrever \q
+
+//para correr a aplicação web
+3 - Abrir uma nova aba ubuntu
+3.1 - cd src/uniddrive/
+3.2 - explorer.exe .
+3.3 - copiar a pasta app que foi fornecida no nosso zip para a pasta aberta pelo ubuntu
+3.4 - docker-compose up --build
+4 - Abrir o browser
+4.1 - Escrever na barra de endereços: http://localhost:3000/
+
+
+
